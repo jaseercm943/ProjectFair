@@ -1,0 +1,171 @@
+ MONGO DB
+--------
+diffenece between SQL and MONGODB
+
+-----------SQL-------------------------------------MONGODB---------------------
+
+-relational / sql DBMS                    -Document oriented/NoSql DB
+-used fixed schema                        -uses dynamic schema
+-optimized for complex joins and          -optimized for scalability and performance
+ transactions 
+-rich type of data set                    -limited type of data type
+-declaretive query language               -expressive query language
+-ACID(Atomicity,Consistancy,Isolation,    -CAP(Consistancy,Availability and Partition tolarence)
+ Durability)PROPERTY
+-used in traditional business app         -used in bigdata and real time application
+
+
+-mongodb will create a unique id for all new document,which is a hexademical object id stored in key '_id
+-collection name must starts with small letters and it must a plural word
+
+-show databases-to list databases
+-use db_name- switch to a database
+-show collections-list collection in a db
+
+-CRUD OPERATIONS
+
+-db.collection_name.find():to read all documents from the collection
+-db.collection_name.findOne({key:"value"}):read a documents in collection whose satisfying a a condition.if condition satisfying,it return the     
+ entire documents else return null
+-db.collection_name.insertOne({key:value}):to insert single documents to the collection
+-db.collection_name.insertMany([{key:value},{key:value}]):to insert multiple documents to the 
+-db.collection_name.countDocuments():display documents count in the collection
+-db.collection_name.find().limit(count):to limit count of documents read from the collection
+-db.collection_name.find().sort({key:1}):to sort data based on key 1- ascending,-1-descending
+-skip(number):to skip data while reading the documents
+--$gt/$lt/$gte/$ne used to perform quering while reading documents
+-$in/$nin used to check documents are include or not
+-$expr used to compare different field in same documents
+-updateOne/updateMany()-to update documents
+-deleteOne/deleteMany-to delete documents from collection
+-aggregate-used to join multiple collection to get common result
+
+     {
+        $lookup:{
+            from:<collections to join>,
+            localfield:<field from the input document>,
+            foreingnfield:<feild in the document of 'from' collection>,
+            as:<output array feild>
+        }
+     }
+
+
+NODE JS ------- Server/Back-end
+--------------------------------
+1-run time environment for js + js library
+2-features
+    -Extreamly Faster
+    -Asynchronous in nature
+    -single Threaded and event loop
+    -Open-source
+    -Highly scalable
+3-Node js Global Object
+    -it can be accessed anywhere in your node app without exporting/importing
+    -eg:console.log()
+4-Node Module(file) system:a file is considered as a module.To access data from one file it has to export from there and before using it in  
+  another file it has to import
+      To import-require()
+      To export-module.exports/exports
+5-built-in modules in node js
+    -fs(file system):handling file related events
+    -http:create web server
+    -https:create web server
+    -crypto:providing tools like hashing,encryption etc
+    -events:works with events emitter
+    -process:used to provide currently running process in node js app
+6-proceess
+   -Environmental variables: used to hold/configuration/confidential data regarding the project,to use 'env' through out the app use "process.env.variable_name"
+
+7-Node js Packages
+   -used to resolve common problem
+   -we have to install packages via npm 
+   -it add packages.json,package-lock.json and Node Modules
+
+8-Back-end Concepts
+   -used in client-server architecture
+   -REST API: http request+Json data
+   -CRUD OPERATIONS:Create(POST),Read(GET),Update(PUT),Delete(DELETE)
+
+  CORS(Cross Origin Resource Sharing) mut be enabled in server    
+
+EXPRESS JS- FRAMEWORK OF NODE JS
+----------------------------------
+-Used in client server architecture as a web browser
+-steps to create an express server
+   -create a server folder
+   -inside the folder create 'package.json' file usimg the command "npm init -y"
+   -install following packages for creating server
+       *cors
+       *Express
+       *dotenv
+   -create .env file (used to store Enviornmental Variables of your project)
+   -Create .gitignore file and add node_node modules and .env file  
+   -create index.js file to define server
+          -import dotenv,express and cors
+          -create express server
+          -use cors
+          -use json parser in server
+          -create port for server
+          -start to listen server app for client
+          -run server app usimg the command node index.js
+
+   -create routes in express server
+          -create routes folder in express server
+          -create router.js file inside the folder
+              -import express library
+              -create an object of Router of defining route for the app
+              -export route from the file
+              -import in index.js
+              -use route in server
+
+  -MONGOOSE-(object Data Modelling)
+ --------------------------------------------
+  -install using => npm i mongoose
+  -create schema : structure of the document that we want to store in a collection
+     -create object schema class  
+    -model : copy of collection in db  
+
+  JSONWEBTOKEN-JWT  
+  ----------------------------------------
+  -install using => npm i jsonwebtoken
+  -library used for autentication in client-server request used to securely transfer information over the web 
+  -generate token when login success
+     -token creation using jwt:use sign(payload,password)
+        payload:it is the data that we wanted to store inside the token 
+        password: can be data 
+
+  MIDDILEWARE
+ -----------------------
+ -used to control request-response cycle in server. before resolving a request a server can perform any task 
+ (authorization,data formating etc....) using MIDDILEWARE
+-middileware are function with 3 arguments, they are request,response,next
+   request : will give you client request
+   response: object will give you response from server to client
+       next: method used to control request
+   -middileware can be of 2 type
+     -application specific: middileware will active for all client request  
+     -router specific: middileware will  active for only selected route/path
+  -setup authorization using middileware
+    -create folder for middileware   
+    -to verify token use verify(token,password),return a response if token is valid otherwise return an error  
+
+ MULTER-NODE JS MIDDILEWARE FOR HANDLING "MULTIPART/FORM"
+ ----------------------------------------------------------
+ -Multer add "body" and "file" key to the "req object"
+ -install Multer using the command:" npm i multer"
+ -multer can define "storage space" for "uploaded file"
+ -to handle multipart/formdata using multer
+    -create a js file inside middileware folder
+    -import multer
+    -create an "uploades" folder in server to store upload files
+
+
+CONTEXT API: Data Sharing Technique in react
+--------------------------------------------
+
+- Provide a centralised way to manage state across components
+- Share specific info:(state or function) with multiple components without props drilling
+- steps:
+     -creating a context using createContext() method
+     -providing the context : use provider of the context , so that helps to provide data to components
+     -consuming the context: to use/access data shared using context API use "useContext" hook
