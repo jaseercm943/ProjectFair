@@ -2,17 +2,23 @@ import React, { useState } from 'react'
 import { Button, Card, Modal } from 'react-bootstrap'
 import SERVERURL from '../services/serverurl';
 
-
+//displayData contains All Project Details
 function ProjectCard({displayData}) {
+     
+      
+      
       const [show, setShow] = useState(false);
-        console.log(displayData);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+        
+      const handleClose = () => setShow(false);
+      const handleShow = () => setShow(true);
   
   
   return (
    <>
     <Card style={{ width: '20rem' }}>
+
+      {/* Accessing Image File as => ${SERVERURL}/uploads/${displayData.picture} */}
+      {/* because the image file accessing from server ->> if accessing permision granted by server */}
       <Card.Img onClick={handleShow} variant="top" src={`${SERVERURL}/uploads/${displayData.picture}`} height={'300px'}/>
       <Card.Body>
         <Card.Title className='text-success fw-bolder'>{displayData?.title}</Card.Title>
@@ -28,7 +34,7 @@ function ProjectCard({displayData}) {
 
       <Modal size='lg' show={show} onHide={handleClose} className='bg-dark'>
         <Modal.Header closeButton>
-          <Modal.Title>Project</Modal.Title>
+          <Modal.Title className='fw-bolder text-decoration-underline'>Project</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <div className='row'>
@@ -37,9 +43,9 @@ function ProjectCard({displayData}) {
                </div>
 
                <div className='col-lg-6'>
-                   <h4 className='text-decoration-underline'>Project Name: {displayData?.title}</h4>
-                   <h4 className='text-decoration-underline'>Languages Used: {displayData?.lang}</h4>
-                   <h4 className=''>Projects Overview: <span >{displayData?.overview} </span></h4>
+                   <h5 className='fw-bolder'>Project Name : <span className='fw-normal'>{displayData?.title}</span></h5>
+                   <h5 className='fw-bolder'>Languages Used: <span className='fw-normal'>{displayData?.lang}</span></h5>
+                   <h5 className='fw-bolder'>Projects Overview: <span className='fw-normal'>{displayData?.overview} </span></h5>
                </div>
             </div>
             <div className='mt-3 '>

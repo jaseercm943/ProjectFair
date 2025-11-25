@@ -51,11 +51,15 @@ function Authentication({insideRegister}) {
      e.preventDefault()
      if(userData.email&&userData.password){
           try {
+          //Server Passed Response
            const result= await loginAPI(userData)
            console.log(result);
            if(result.status==200){
+            //Whenver Login success isLoginResponse turns true(Can Access UserDashboard)
             setisLoginResponse(true)
+            //For Showing Spinner
             setisLogin(true)
+            //Delaying for 2 Seconds server passed responses{token && userDetails}(LINE NUMBER=55) set to sessionStorage
             setTimeout(() => {
                sessionStorage.setItem('user',JSON.stringify(result.data.user))
                sessionStorage.setItem('token',(result.data.token))

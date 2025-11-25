@@ -19,6 +19,7 @@ function Footer() {
              <li> <Link to={'/dashboard'} style={{textDecoration:'none',color:'white'}}>Dashboard</Link></li>
              <li><Link to={'/login'} style={{textDecoration:'none',color:'white'}}>Login</Link></li>
              <li><Link to={'/register'} style={{textDecoration:'none',color:'white'}}>Register</Link></li>
+              <li><Link to={'/projects'} style={{textDecoration:'none',color:'white'}}>Projects</Link></li>
             </ul>
         </div>
         <div className='col-3'>

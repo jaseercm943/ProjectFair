@@ -4,17 +4,18 @@ import ProjectCard from '../components/ProjectCard'
 import Header from '../components/Header'
 import { Col, Row } from 'react-bootstrap'
 import { getAllProjectsAPI } from '../services/allApi'
-import { LoginResponseContext } from '../context/Context'
 
+//To Display All Projects Added by All Users Registered
 function Projects() {
-  const{isLoginResponse}=useContext(LoginResponseContext)
+ 
   const[searchkey,setsearchkey]=useState('')
   const [allprojects,setallprojects]=useState([])
   console.log(allprojects);
   
-    useEffect(() => {
+    //Getting All Projects when Page Loads and Whenever Searching Happens
+      useEffect(() => {
         getallProjects() //to get all projects when component loaded
-      }, [searchkey,isLoginResponse])
+      }, [searchkey])
       
     
       const getallProjects=async()=>{
@@ -53,9 +54,11 @@ function Projects() {
         
         <Row>
           {
+          //Collected All Projects Displayed here
           allprojects?.length>0?
           allprojects?.map(projects=>(
                 <Col lg={3} md={6} sm={12} className='mt-5 ps-2'>
+                  {/* The Complete Projects details passed to ProjectsCard Component */}
                    <ProjectCard displayData={projects}/>
                 </Col>
           ))

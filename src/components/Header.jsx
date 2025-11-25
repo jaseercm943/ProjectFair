@@ -7,12 +7,14 @@ import { LoginResponseContext } from '../context/Context';
 
 function Header({insideAuth}) {
   const navigate=useNavigate()
+  //Destryctured the state function created in Context Component 
   const{setisLoginResponse}=useContext(LoginResponseContext)
   //logic for logout
   const handleLogout=()=>{
+    //isLoginResponse turns true , and that means Logged Out Successfully
       setisLoginResponse(false)
-      sessionStorage.clear() //clearing all user information
-      navigate('/login')
+      sessionStorage.clear() //clearing all information in the sessionStorage
+      navigate('/login')     //Navigating to Login page
 
   }
   return (

@@ -16,6 +16,7 @@ import { LoginResponseContext } from './context/Context'
 
 
 function App() {
+  //Destructured the state from Context created in Context Api(state management)
   const{isLoginResponse}=useContext(LoginResponseContext)
 
   return (
@@ -25,6 +26,8 @@ function App() {
        <Route path='/login' element={<Authentication/>}/>
        {/* Want to show login page and register page difference because it uses same component */}
         <Route path='/register' element={<Authentication insideRegister={true}/>}/>
+
+        {/* Whenever  isLoginResponse state is true ,then access of dashboard and projects components is permittable*/}
          <Route path='/dashboard' element={isLoginResponse?<Userdashboard/>:<Authentication/>}/>
            <Route path='/projects' element={isLoginResponse?<Projects/>:<Authentication/>}/>
     </Routes>
